@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-for i in $(ls -d $1/*/)
-do 
-	if [ $(stat -c %a $i | awk '{print$1}' grep "r" ) -z ] then
-		echo $i "are ok"
-	else
-		chmod +r -v $1/*/ >> $(pwd)/change-droit.log
-	fi
+ls -ld $PWD/*/ | awk '$1 !~/r/{print$NF}' >> to-change.log
+for i in $(cat to-change.log)
+do
+  output_date=$(date --iso)
+	output_change=$(chmod +r -v $i)
+  echo "$output_date $output_change" >> change-droit.log
 done
+rm to-change.log
