@@ -4,6 +4,6 @@ do
 	if [ $(stat -c %a $i | awk '{print$1}' grep "r" ) -z ] then
 		echo $i "are ok"
 	else
-    chmod +r  $1/*/
+		chmod +r -v $1/*/
 	fi
 done
