@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-ls -l $1/*/
+ls -d $1/*/
